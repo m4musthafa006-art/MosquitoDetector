@@ -592,7 +592,14 @@ elif mode == "🎥 Live Cam":
             rtc_config = {
                 "iceServers": [
                     {"urls": ["stun:stun.l.google.com:19302"]},
-                    {"urls": ["turn:freeturn.net:3478"], "username": "free", "credential": "free"}
+                    {
+                        "urls": [
+                            "turn:openrelay.metered.ca:80?transport=tcp",
+                            "turn:openrelay.metered.ca:443?transport=tcp"
+                        ],
+                        "username": "openrelayproject",
+                        "credential": "openrelayproject"
+                    }
                 ]
             }
             
@@ -601,7 +608,8 @@ elif mode == "🎥 Live Cam":
                 video_processor_factory=VideoProcessor,
                 media_stream_constraints={"video": True, "audio": False},
                 rtc_configuration=rtc_config,
-                mode=WebRtcMode.SENDRECV
+                mode=WebRtcMode.SENDRECV,
+                async_processing=True
             )
             
             if webrtc_ctx.state.playing:

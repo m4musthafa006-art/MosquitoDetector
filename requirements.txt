@@ -5,4 +5,4 @@ torchvision
 pillow
 numpy
 av
-streamlit-webrtc
+streamlit-webrtc==0.47.9
